@@ -4,24 +4,63 @@
     </header>
     <body>
         <div id="app">
-            <h1 v-once>{{ title }}</h1>
-            <p>{{ title }} <a v-bind:href="link">Google</a></p>
-            <hr>
-            <p v-html="finishedLink"></p>
+            <div>
+                <h1 v-once>{{ title }}</h1>
+                <p>{{ sayHello() }} <a :href="link">Google</a></p>
+                <hr>
+                <p v-html="finishedLink"></p>
+            </div>
+            <div>
+                <p>{{ counter }}</p>
+                <button v-on:click="increase(2, $event)">Click me!</button>
+                <p @mousemove="updateCoords">Cordinates - {{ x }} - {{ y }} - <span v-on:mousemove.stop>DEAD SPOT</span></p>
+                <input type="text" v-on:keyup.enter="alertMe()">
+                <hr>
+                <input type="text" v-model="name">
+                <p>{{ name }}</p>
+            </div>
         </div>
     </body>
     <script>
         new Vue({
             el: '#app',
             data: {
+                name: 'Max',
                 title: 'Hello World!',
                 link: 'https://www.google.com',
-                finishedLink: '<a href="https://www.google.com">Google</a></p>'
+                finishedLink: '<a href="https://www.google.com">Google</a></p>',
+                counter: 0,
+                x: 0,
+                y: 0
+            },
+            computed: {
+                // sync.
+                // here go methods there not need to be run every time when a property change.
+                // functions can be used like properties.
+            },
+            watch: {
+                // async.
+                counter : function() {
+                    var vm = this;
+                    setTimeout(() => {
+                        vm.counter = 0;
+                    }, 2000);
+                }
             },
             methods: {
                 sayHello: function() {
                     this.title = 'Hello';
                     return this.title;
+                },
+                increase: function(step, event) {
+                    this.counter += step;
+                },
+                updateCoords: function(event) {
+                    this.x = event.clientX;
+                    this.y = event.clientY;
+                },
+                alertMe: function() {
+                    alert("testing");
                 }
             }
         });
