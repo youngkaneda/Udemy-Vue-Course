@@ -3,14 +3,14 @@
         <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script> 
     </header>
     <style>
-        .marine {
-            background-color: aquamarine !important;
+        .olive {
+            background-color: olivedrab !important;
         }
         .demo {
             width: 100px; 
             height: 100px; 
             margin: 10px; 
-            background-color: aliceblue;
+            background-color: silver;
         }
     </style>
     <body>
@@ -31,16 +31,22 @@
                 <p>{{ name }}</p>
             </div>
             <div class="demo"
-                @click="attachMarine = !attachMarine"
-                :class="{marine: attachMarine}">
+                @click="attachColor = !attachColor"
+                :class="{marine: attachColor}">
             </div>
+            <div class="demo"
+                :style="{backgroundColor: color}">
+            </div>
+            <hr>
+            <input type="text" name="" id="" v-model="color">
         </div>
     </body>
     <script>
         new Vue({
             el: '#app',
             data: {
-                attachMarine: false,
+                color: 'seashell',
+                attachColor: false,
                 name: 'Max',
                 title: 'Hello World!',
                 link: 'https://www.google.com',
