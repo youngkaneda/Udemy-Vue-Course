@@ -4,6 +4,7 @@
         <p>Many Details</p>
         <p>User name: {{myName}}</p>
         <button @click="resetName">reset name</button>
+        <button @click="resetFn()">reset name</button>
     </div>
 </template>
 
@@ -17,7 +18,8 @@
                 // default: function() {
                 //     return {}
                 // }
-            }
+            },
+            resetFn: Function
         },
         methods: {
             resetName: function() {
