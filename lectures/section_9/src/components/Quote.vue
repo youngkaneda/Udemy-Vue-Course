@@ -1,6 +1,14 @@
 <template>
     <div>
-        <slot></slot>
+        <div>
+            <slot name="title"></slot>
+            <!-- if a slot with name subtitle is passed, this slot content replaced -->
+            <span><slot name="subtitle">subtitle</slot></span>
+        </div>
+        <div>
+            <!-- contents without are displayed here -->
+            <slot></slot>
+        </div>
     </div>
 </template>
 
@@ -17,5 +25,9 @@
         padding: 30px;
         margin: 30px auto;
         text-align: center;
+    }
+    h2 {
+        font-style: italic;
+        color: aquamarine;
     }
 </style>

@@ -3,6 +3,7 @@
         <div class="row">
             <div class="col-xs-12">
                <quote>
+                   <h2 slot="title">Title <!-- {{interpolation works}} --></h2>
                    <p>A wonderful quote!</p>
                </quote>
             </div>
