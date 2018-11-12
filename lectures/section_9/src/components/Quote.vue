@@ -16,7 +16,7 @@
 
 <script>
     export default {
-        // dynamic components lifecycle
+        // dynamic components lifecycle {only if kept alive}
         activated: function () {
             console.log("activated");
         },
