@@ -14,6 +14,12 @@
             navigateToHome() {
                 this.$router.push({ name: 'home' });
             }
+        },
+        beforeRouteLeave(to, from, next) {
+            if (confirm('Are you sure?'))
+                next();
+            else
+                next(false);
         }
     }
 </script>
