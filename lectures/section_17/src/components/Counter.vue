@@ -1,12 +1,13 @@
 <template>
     <div>
-        <button class="btn btn-primary" @click="increment">Increment</button>
-        <button class="btn btn-primary" @click="decrement">Decrement</button>
+        <!-- its ok use this way because is an object that count as one arg, so we can only call mapActions -->
+        <button class="btn btn-primary" @click="increment({by: 10, time: 1000})">Increment</button>
+        <button class="btn btn-primary" @click="decrement({by: 10, time: 1000})">Decrement</button>
     </div>
 </template>
 
 <script>
-    import { mapMutations } from 'vuex';
+    import { mapActions } from 'vuex';
     export default {
         // methods: {
         //     increment() {
@@ -17,7 +18,7 @@
         //     }
         // }
         methods: {
-            ...mapMutations({
+            ...mapActions({
                 increment: 'increment',
                 decrement: 'decrement',    
             }),

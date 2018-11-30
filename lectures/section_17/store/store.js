@@ -13,8 +13,20 @@ export default new Vuex.Store({
     },
     mutations: {
         // eslint-disable-next-line no-param-reassign
-        increment: (state) => { state.counter += 1; },
+        increment: (state, value) => { state.counter += value; },
         // eslint-disable-next-line no-param-reassign
-        decrement: (state) => { state.counter -= 1; },
+        decrement: (state, value) => { state.counter -= value; },
+    },
+    actions: {
+        increment: ({ commit }, payload) => {
+            setTimeout(() => {
+                commit('increment', payload.by);
+            }, payload.time);
+        },
+        decrement: ({ commit }, payload) => {
+            setTimeout(() => {
+                commit('decrement', payload.by);
+            }, payload.time);
+        },
     },
 });
