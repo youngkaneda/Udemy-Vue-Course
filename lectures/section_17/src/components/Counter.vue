@@ -18,10 +18,10 @@
         //     }
         // }
         methods: {
-            ...mapActions({
-                increment: 'increment',
-                decrement: 'decrement',    
-            }),
+            ...mapActions('counter', [
+                'increment',
+                'decrement',    
+            ]),
         }
     }
 </script>

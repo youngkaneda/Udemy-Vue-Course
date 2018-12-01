@@ -11,7 +11,7 @@
         //     },
         // },
         computed: {
-            ...mapGetters({counter: 'doubleCounter'}),
+            ...mapGetters('counter', {counter: 'doubleCounter'}),
         },
     }
 </script>

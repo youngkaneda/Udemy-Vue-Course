@@ -1,32 +1,32 @@
 // eslint-disable-next-line import/no-unresolved
 import Vue from 'vue';
 import Vuex from 'vuex';
+import counter from './modules/counter';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        counter: 0,
+        value: 0,
     },
     getters: {
-        doubleCounter: state => state.counter * 2,
+        value: state => state.value,
     },
     mutations: {
-        // eslint-disable-next-line no-param-reassign
-        increment: (state, value) => { state.counter += value; },
-        // eslint-disable-next-line no-param-reassign
-        decrement: (state, value) => { state.counter -= value; },
+        updateValue: (state, payload) => {
+            // eslint-disable-next-line no-param-reassign
+            state.value = payload;
+        },
     },
     actions: {
-        increment: ({ commit }, payload) => {
-            setTimeout(() => {
-                commit('increment', payload.by);
-            }, payload.time);
+        updateValue: ({ commit }, payload) => {
+            commit('updateValue', payload);
         },
-        decrement: ({ commit }, payload) => {
-            setTimeout(() => {
-                commit('decrement', payload.by);
-            }, payload.time);
+    },
+    modules: {
+        counter: {
+            namespaced: true,
+            ...counter,
         },
     },
 });
