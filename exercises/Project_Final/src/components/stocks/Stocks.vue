@@ -5,6 +5,7 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex';
     import Stock from './Stock.vue';
 
     export default {
@@ -12,13 +13,7 @@
             appStock: Stock,
         },
         computed: {
-            stocks() {
-                return this.$store.getters.stocks;
-            }
+            ...mapGetters('stocks', ['stocks']),
         }
     };
 </script>
-
-<style>
-
-</style>

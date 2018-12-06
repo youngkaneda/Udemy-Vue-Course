@@ -18,8 +18,8 @@
                 <div class="pull-right">
                     <button 
                         class="btn btn-success"
-                        @click="buyStock"
-                        :disabled="numberQnt <= 0 || !Number.isInteger(numberQnt)">Buy</button>
+                        @click="buy"
+                        :disabled="numberQnt <= 0 || !Number.isInteger(numberQnt) || noFunds">Buy</button>
                 </div>
             </div>
         </div>
@@ -27,6 +27,8 @@
 </template>
 
 <script>
+    import { mapActions } from 'vuex';
+
     export default {
         props: ['stock'],
         data() {
@@ -37,16 +39,21 @@
         computed: {
             numberQnt() {
                 return parseInt(this.quantity);
-            }
+            },
+            noFunds() {
+                return this.$store.getters['portfolio/funds'] < this.stock.price * this.quantity;
+            },
         },
         methods: {
-            buyStock() {
+            ...mapActions('stocks', ['buyStock']),
+            buy() {
                 const order = {
                     stockPrice: this.stock.price,
                     stockId: this.stock.id,
                     quantity: this.quantity,
                 };
-                console.log(order);
+                this.buyStock(order);
+                this.quantity = 0;
             }
         },
     }
